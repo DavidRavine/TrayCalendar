@@ -96,7 +96,7 @@ class CalendarWindow(object):
             self.get_lock()
 
         self.window = Gtk.Window()
-        self.window.set_wmclass("traycalendar", WM_CLASS)
+        GLib.set_prgname(WM_CLASS)
 
         self.window.set_resizable(False)
         self.window.set_decorated(False)
@@ -117,7 +117,7 @@ class CalendarWindow(object):
 
         # Create the listview for the calendar events.
         list_model = Gtk.ListStore(str)
-        list_view = Gtk.TreeView(list_model)
+        list_view = Gtk.TreeView(model=list_model)
         list_column = Gtk.TreeViewColumn("Events", Gtk.CellRendererText(), text=0)
         list_column.set_fixed_width(window_width)
         list_view.append_column(list_column)
@@ -130,7 +130,7 @@ class CalendarWindow(object):
         self.mark_calendar_events(calendar)
         self.display_event_list(calendar, list_model)
 
-        close_button = Gtk.Button("Close")
+        close_button = Gtk.Button(label="Close")
         close_button.connect('clicked', lambda event: self.window.destroy())
 
         vbox = Gtk.VBox()

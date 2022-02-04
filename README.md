@@ -19,13 +19,13 @@ right corner of the screen.
 The calendar window should be ignored by the window manager. In XMonad it can be achieved by adding the following rule to `manageHook`:
 
 ```haskell
-className =? "TrayCalendar" --> doIgnore
+title =? "TrayCalendar" --> doIgnore
 ```
 
 Suggested configuration for `xmobar` as the clock:
 
 ```
-<action=`traycalendar --no-tray &> /dev/null`><action=`traycalendar &> /dev/null` button=3>%date%</action></action>
+<action=`traycalendar --no-tray &> /dev/null`>%date%</action>
 ```
 
 DEPENDENCIES
